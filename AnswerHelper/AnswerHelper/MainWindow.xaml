@@ -6,7 +6,18 @@
         xmlns:local="clr-namespace:AnswerHelper"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+    <Window.DataContext>
+        <local:MainWindowViewModel/>
+    </Window.DataContext>
     <Grid>
-        
+        <Menu Height="20" VerticalAlignment="Top">
+            <MenuItem Header="File">
+                <MenuItem Header="New Answer">
+                </MenuItem>
+            </MenuItem>
+        </Menu>
+        <Button Content="Button" HorizontalAlignment="Left" Margin="81,75,0,0" VerticalAlignment="Top" Width="75" Command="{Binding AddCommand}"/>
+        <ListBox HorizontalAlignment="Left" Height="315" Margin="185,75,0,0" VerticalAlignment="Top" Width="571"/>
+
     </Grid>
 </Window>
