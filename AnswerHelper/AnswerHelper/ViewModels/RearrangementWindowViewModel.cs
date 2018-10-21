@@ -23,7 +23,7 @@ namespace AnswerHelper
         private void OnSaveCommandExecuted(object window)
         {
             Mediator.NotifyColleggues("GetRearrangement",new Rearrangement(Chromosome, StartLocation, EndLocation, "Duplication"));
-            ((IClosable)window).Close();
+            ((IClosable)window)?.Close();
         }
     }
 }

@@ -12,6 +12,9 @@ namespace AnswerHelper
         private ObservableCollection<Rearrangement> _Rearrangements;
         private string _Date;
         private static Answer Instance;
+        public string Name { get; set; }
+        public string Surname { get; set; }
+        public string Age { get; set; }
 
         public ObservableCollection<Rearrangement> Rearrangements
         {
