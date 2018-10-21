@@ -12,16 +12,20 @@
     <Grid>
         <Menu Height="20" VerticalAlignment="Top">
             <MenuItem Header="File">
-                <MenuItem Header="New Answer">
+                <MenuItem Header="New Answer" Command="{Binding NewAnswerCommand}">
                 </MenuItem>
             </MenuItem>
         </Menu>
         <Button Name ="AddRearangementButton" Content="Добавить перестройку" 
                 HorizontalAlignment="Left" Margin="20,75,0,0" VerticalAlignment="Top" Width="136"
                 Command="{Binding AddCommand}"/>
+        <Button Content="Сохранить ответ" HorizontalAlignment="Left" 
+                Margin="20,100,0,0" VerticalAlignment="Top" Width="136"
+                Command="{Binding SaveCommand}"/>
         <DataGrid HorizontalAlignment="Left" Height="315" Margin="185,75,0,0" VerticalAlignment="Top" Width="571"
-                 ItemsSource ="{Binding MainAnswer.Rearrangements}" IsSynchronizedWithCurrentItem = "True" Grid.ColumnSpan ="4">
-            <DataGrid.Columns>
+                 ItemsSource ="{Binding MainAnswer.Rearrangements}" 
+                  AutoGenerateColumns="False">
+            <DataGrid.Columns >
                 <DataGridTextColumn x:Name="ChromosomeColumn" Header = "Locus" Binding="{Binding ChromosomeLocus}"/>
                 <DataGridTextColumn x:Name="StartColumn" Header = "Start" Binding="{Binding StartLocation}"/>
                 <DataGridTextColumn x:Name="EndColumn" Header = "End" Binding="{Binding EndLocation}"/>
@@ -29,11 +33,12 @@
             </DataGrid.Columns>
         </DataGrid>
         <Label Content="Label" HorizontalAlignment="Left" Margin="185,43,0,0" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="236,47,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="236,47,0,0" TextWrapping="Wrap" 
+                 VerticalAlignment="Top" Width="120"
+                 Text ="{Binding MainAnswer.Name}"/>
         <Label Content="Label" HorizontalAlignment="Left" Margin="373,43,0,0" VerticalAlignment="Top"/>
         <TextBox HorizontalAlignment="Left" Height="23" Margin="416,47,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
         <TextBox HorizontalAlignment="Left" Height="23" Margin="604,47,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
         <Label Content="Label" HorizontalAlignment="Left" Margin="561,43,0,0" VerticalAlignment="Top" RenderTransformOrigin="2.339,0.303"/>
-
     </Grid>
 </Window>

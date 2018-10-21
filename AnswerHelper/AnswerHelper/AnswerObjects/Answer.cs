@@ -1,7 +1,11 @@
-﻿using System;
+﻿using Microsoft.Win32.SafeHandles;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -12,6 +16,7 @@ namespace AnswerHelper
         private ObservableCollection<Rearrangement> _Rearrangements;
         private string _Date;
         private static Answer Instance;
+
         public string Name { get; set; }
         public string Surname { get; set; }
         public string Age { get; set; }
@@ -32,6 +37,13 @@ namespace AnswerHelper
                 Instance = new Answer();
             return Instance;
         }
-        
+
+        public static Answer Refresh()
+        {
+            if (Instance != null)
+                Instance = new Answer();
+            return Instance;
+        }
+
     }
 }
