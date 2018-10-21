@@ -16,8 +16,18 @@
                 </MenuItem>
             </MenuItem>
         </Menu>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="81,75,0,0" VerticalAlignment="Top" Width="75" Command="{Binding AddCommand}"/>
-        <ListBox HorizontalAlignment="Left" Height="315" Margin="185,75,0,0" VerticalAlignment="Top" Width="571"/>
+        <Button Name ="AddRearangementButton" Content="Добавить перестройку" 
+                HorizontalAlignment="Left" Margin="20,75,0,0" VerticalAlignment="Top" Width="136"
+                Command="{Binding AddCommand}"/>
+        <DataGrid HorizontalAlignment="Left" Height="315" Margin="185,75,0,0" VerticalAlignment="Top" Width="571"
+                 ItemsSource ="{Binding MainAnswer.Rearrangements}" IsSynchronizedWithCurrentItem = "True" Grid.ColumnSpan ="4">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="ChromosomeColumn" Header = "Locus" Binding="{Binding ChromosomeLocus}"/>
+                <DataGridTextColumn x:Name="StartColumn" Header = "Start" Binding="{Binding StartLocation}"/>
+                <DataGridTextColumn x:Name="EndColumn" Header = "End" Binding="{Binding EndLocation}"/>
+                <DataGridTextColumn x:Name="TypeColumn" Header = "Type" Binding="{Binding Type}"/>
+            </DataGrid.Columns>
+        </DataGrid>
 
     </Grid>
 </Window>

@@ -17,7 +17,7 @@ namespace AnswerHelper
     /// <summary>
     /// Логика взаимодействия для RearrangementWindow.xaml
     /// </summary>
-    public partial class RearrangementWindow : Window
+    public partial class RearrangementWindow : Window, IClosable
     {
         public RearrangementWindow()
         {

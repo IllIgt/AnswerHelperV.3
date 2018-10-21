@@ -57,6 +57,8 @@
     <Compile Include="AnswerObjects\Answer.cs" />
     <Compile Include="AnswerObjects\Rearrangement.cs" />
     <Compile Include="Comand.cs" />
+    <Compile Include="IClosable.cs" />
+    <Compile Include="Mediator.cs" />
     <Compile Include="RearrangementWindow.xaml.cs">
       <DependentUpon>RearrangementWindow.xaml</DependentUpon>
     </Compile>

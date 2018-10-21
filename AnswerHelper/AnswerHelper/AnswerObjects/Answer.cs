@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,9 +9,14 @@ namespace AnswerHelper
 {
     class Answer
     {
-        public List<Rearrangement> Rearrangements { get; set; }
+        private ObservableCollection<Rearrangement> _Rearrangements;
         private string _Date;
         private static Answer Instance;
+
+        public ObservableCollection<Rearrangement> Rearrangements
+        {
+            get { return _Rearrangements ?? (_Rearrangements = new ObservableCollection<Rearrangement>()); }
+        }
 
         public Answer()
         {
