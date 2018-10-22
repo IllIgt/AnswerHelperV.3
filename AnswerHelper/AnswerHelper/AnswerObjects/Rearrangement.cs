@@ -8,13 +8,13 @@ namespace AnswerHelper
 {
     class Rearrangement
     {
-        private int _Size;
+        private long _Size;
         public string Type { get; set; }
-        public int StartLocation { get; set; }
-        public int EndLocation { get; set; }
+        public long StartLocation { get; set; }
+        public long EndLocation { get; set; }
         public string ChromosomeLocus { get; set; }
 
-        public Rearrangement(string chromosome_locus, int start_location, int end_location, string type)
+        public Rearrangement(string chromosome_locus, long start_location, long end_location, string type)
         {
             StartLocation = start_location;
             EndLocation = end_location;

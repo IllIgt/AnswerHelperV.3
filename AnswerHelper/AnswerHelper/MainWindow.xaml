@@ -18,10 +18,10 @@
         </Menu>
         <Button Name ="AddRearangementButton" Content="Добавить перестройку" 
                 HorizontalAlignment="Left" Margin="20,75,0,0" VerticalAlignment="Top" Width="136"
-                Command="{Binding AddCommand}"/>
+                Command="{Binding AddCommand}" Height="25"/>
         <Button Content="Сохранить ответ" HorizontalAlignment="Left" 
-                Margin="20,100,0,0" VerticalAlignment="Top" Width="136"
-                Command="{Binding SaveCommand}"/>
+                Margin="20,115,0,0" VerticalAlignment="Top" Width="136"
+                Command="{Binding SaveCommand}" Height="25"/>
         <DataGrid HorizontalAlignment="Left" Height="315" Margin="185,75,0,0" VerticalAlignment="Top" Width="571"
                  ItemsSource ="{Binding MainAnswer.Rearrangements}" 
                   AutoGenerateColumns="False">
@@ -32,13 +32,18 @@
                 <DataGridTextColumn x:Name="TypeColumn" Header = "Type" Binding="{Binding Type}"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Label Content="Label" HorizontalAlignment="Left" Margin="185,43,0,0" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="236,47,0,0" TextWrapping="Wrap" 
+        <Label Content="Имя" HorizontalAlignment="Left" Margin="185,43,0,0" VerticalAlignment="Top"/>
+        <Label Content="Фамилия" HorizontalAlignment="Left" Margin="348,44,0,0" VerticalAlignment="Top"/>
+        <Label Content="Возраст" HorizontalAlignment="Left" Margin="538,44,0,0" VerticalAlignment="Top"/>
+
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="223,47,0,0" TextWrapping="Wrap" 
                  VerticalAlignment="Top" Width="120"
-                 Text ="{Binding MainAnswer.Name}"/>
-        <Label Content="Label" HorizontalAlignment="Left" Margin="373,43,0,0" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="416,47,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="604,47,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <Label Content="Label" HorizontalAlignment="Left" Margin="561,43,0,0" VerticalAlignment="Top" RenderTransformOrigin="2.339,0.303"/>
+                 Name="NameTextBox" Text ="{Binding MainAnswer.Name}"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="413,48,0,0" TextWrapping="Wrap" 
+                 Name="SurnameTextBox" Text="{Binding MainAnswer.Surname}" 
+                 VerticalAlignment="Top" Width="120"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="596,48,0,0" TextWrapping="Wrap" 
+                 Name="AgeTextBox" Text="{Binding MainAnswer.Age}" 
+                 VerticalAlignment="Top" Width="120"/>
     </Grid>
 </Window>

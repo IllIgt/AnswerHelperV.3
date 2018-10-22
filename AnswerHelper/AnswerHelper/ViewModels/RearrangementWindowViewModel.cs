@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
@@ -12,8 +13,9 @@ namespace AnswerHelper
     {
         public Command SaveCommand { get; private set; }
         public string Chromosome { get; set; }
-        public int StartLocation { get; set; }
-        public int EndLocation { get; set; }
+        public string Location { get; set; }
+        public List<string> Types { get; } = new List<string> {"×1", "×2", "×3", "×1~2", "×2~3", "×0~1", "×4", "×2hmz"};
+        public string SelectedType { get; set; }
 
         public RearrangementWindowViewModel()
         {
@@ -22,7 +24,15 @@ namespace AnswerHelper
 
         private void OnSaveCommandExecuted(object window)
         {
-            Mediator.NotifyColleggues("GetRearrangement",new Rearrangement(Chromosome, StartLocation, EndLocation, "Duplication"));
+            Regex regex = new Regex(@"\d+\s+\d+");
+            Match match = regex.Match(Location);
+            var locations= Regex.Split(match.Value, @"\s+");
+            Mediator.NotifyColleggues("GetRearrangement",
+                new Rearrangement(
+                    Chromosome, 
+                    long.Parse(locations[0]), 
+                    long.Parse(locations[1]), 
+                    SelectedType));
             ((IClosable)window)?.Close();
         }
     }
