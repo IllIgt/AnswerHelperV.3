@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,24 +17,78 @@ namespace AnswerHelper
             Word.Application word = new Word.Application();
             word.Visible = true;
             Word.Document doc = word.Documents.Add();
-            object begin = 0;
-            object end = 0;
-            Word.Range wordrange = doc.Range(ref begin, ref end);
+
+            Word.Style style = word.ActiveDocument.Styles["Обычный"];
+            style.Font.Name = "Times New Roman";
+            style.Font.Size = 14;
+            style.ParagraphFormat.LineSpacingRule = Word.WdLineSpacing.wdLineSpace1pt5;
+            var tempPath = Path.GetTempPath() + "AnswerHeader.png";
+            if (!File.Exists(tempPath))
+            {
+                var headerBitmap = Properties.Resources.AnswerHeader;
+                System.Drawing.Bitmap headerImage = (System.Drawing.Bitmap)(headerBitmap);
+                try
+                {
+                    headerImage.Save(tempPath);
+                }
+                catch(Exception e)
+                {
+                    System.Windows.MessageBox.Show(e.ToString());
+                }
+            }
+            doc.Shapes.AddPicture(tempPath,
+                SaveWithDocument: true, Top: -56, Left: -85, Width: doc.PageSetup.PageWidth, Height: 98);
+
+            //Set paragraphs
+            #region
             var headerParagraph = doc.Paragraphs.Add();
-            headerParagraph.Format.SpaceAfter = 30f;
-            doc.InlineShapes.AddPicture(@"D:\GitHub\AnswerHelperV.3\AnswerHelper\AnswerHelper\Additional\AnswerHeader.png", 
-                Range:headerParagraph.Range);
-            headerParagraph.Range.ParagraphFormat.Alignment = Word.WdParagraphAlignment.wdAlignParagraphDistribute;
-            var titleParagraph = doc.Paragraphs.Add();
-            titleParagraph.Format.SpaceAfter = 30f;
-            titleParagraph.Range.Font.Size = 14;
-            titleParagraph.Range.Font.Name = "Times New Roman";
+            headerParagraph.Range.InsertParagraphAfter();
+            var littleFormatRegion = doc.Paragraphs.Add();
+            littleFormatRegion.Range.InsertParagraphAfter();
+            var titleParagraph = doc.Content.Paragraphs.Add();
+            titleParagraph.Range.InsertParagraphAfter();
+            var afterTitleFirstFormat = doc.Content.Paragraphs.Add();
+           var afterTitleSecondFormat = doc.Content.Paragraphs.Add();
+            var patientParagraph = doc.Content.Paragraphs.Add();
+            patientParagraph.Range.InsertParagraphAfter();
+            var summaryFirstParagraph = doc.Paragraphs.Add();
+            summaryFirstParagraph.Range.InsertParagraphAfter();
+            var summarySecondParagraph = doc.Paragraphs.Add();
+            summarySecondParagraph.Range.InsertParagraphAfter();
+            var arraysSummaryParagraph = doc.Paragraphs.Add();
+            arraysSummaryParagraph.Range.InsertParagraphAfter();
+            #endregion
+
+            //Format paragraphs
+            #region
+            headerParagraph.Range.Font.Size = 10;
+            littleFormatRegion.Range.Font.Size = 12;
+            afterTitleFirstFormat.Range.Font.Size = 12;
+            afterTitleSecondFormat.Range.Font.Size = 12;
+
             titleParagraph.Range.Font.Bold = 1;
             titleParagraph.Range.Font.Underline = Word.WdUnderline.wdUnderlineSingle;
             titleParagraph.Range.Text = "Результаты молекулярно-цитогенетического исследования методом сравнительной геномной гибридизации на микрочипах (молекулярное кариотипирование) с использованием SNP/олигонуклеотидной микроматрицы Affymetrix Cytoscan HD, содержащей 2 696 550 проб.";
             titleParagraph.Range.ParagraphFormat.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
-            Word.Paragraph paragraph = doc.Paragraphs.Add();
-            //paragraph.Range.Text = answerParser.GetSummary();
+
+            patientParagraph.Range.Font.Underline = Word.WdUnderline.wdUnderlineSingle;
+            patientParagraph.Range.Text = answerParser.GetPatientInfo();
+            patientParagraph.Range.ParagraphFormat.Alignment = Word.WdParagraphAlignment.wdAlignParagraphJustify;
+
+            summaryFirstParagraph.Range.Font.Underline = Word.WdUnderline.wdUnderlineSingle;
+            summaryFirstParagraph.Range.Text = "Заключение";
+            summaryFirstParagraph.Range.ParagraphFormat.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
+
+ 
+            summarySecondParagraph.Range.Font.Underline = Word.WdUnderline.wdUnderlineSingle;
+            summarySecondParagraph.Range.Text = "Запись результатов молекулярного кариотипа(согласно ISCN 2013 ):";
+            summarySecondParagraph.Range.ParagraphFormat.Alignment = Word.WdParagraphAlignment.wdAlignParagraphJustify;
+            var footnoteRange = summarySecondParagraph.Range;
+            footnoteRange.End -= 2;
+            doc.Footnotes.Add(footnoteRange, Text:" ISCN (2013):An International System for Human Cytogenetic Nomenclature, L.G. Shaffer, J. McGowan-Jordan, M. Schmid (eds); S. Karger, Basel 2013.");
+
+            arraysSummaryParagraph.Range.Text = answerParser.GetSummary();
+            #endregion
         }
     }
 }

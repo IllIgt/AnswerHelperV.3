@@ -26,7 +26,7 @@ namespace AnswerHelper
             }
             return stringLocation.Insert(0, location.ToString());
         }
-        
+
         public string GetSummary()
         {
             LocationToStringDelegate locationToString = SetLocationToString;
@@ -34,8 +34,13 @@ namespace AnswerHelper
             foreach (var rearrangement in _Answer.Rearrangements)
                 rearrangements += $"{rearrangement.ChromosomeLocus}" +
                     $"({locationToString(rearrangement.StartLocation)}-{locationToString(rearrangement.EndLocation)})" +
-                    $"{rearrangement.Type}{(rearrangement!=_Answer.Rearrangements.Last<Rearrangement>() ? "," : String.Empty)}";
+                    $"{rearrangement.Type}{(rearrangement != _Answer.Rearrangements.Last<Rearrangement>() ? "," : String.Empty)}";
             return rearrangements;
+        }
+
+        public string GetPatientInfo()
+        {
+            return $"Ф.И.О:\t\t{_Answer.Name} {_Answer.Surname} \tВозраст:\t\t {_Answer.Age} {_Answer.SelectedAgePostfix}\t";
         }
     }
 }

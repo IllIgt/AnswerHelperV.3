@@ -17,6 +17,8 @@ namespace AnswerHelper
         private string _Date;
         private static Answer Instance;
 
+        public List<string> AgePostfixes { get; } = new List<string> { "Год", "Года", "Месяц", "Месяцев", "Месяца", "Лет"};
+        public string SelectedAgePostfix { get; set; } = "Лет";
         public string Name { get; set; }
         public string Surname { get; set; }
         public string Age { get; set; }

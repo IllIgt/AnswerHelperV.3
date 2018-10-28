@@ -44,6 +44,8 @@
                  VerticalAlignment="Top" Width="120"/>
         <TextBox HorizontalAlignment="Left" Height="23" Margin="596,48,0,0" TextWrapping="Wrap" 
                  Name="AgeTextBox" Text="{Binding MainAnswer.Age}" 
-                 VerticalAlignment="Top" Width="120"/>
+                 VerticalAlignment="Top" Width="69"/>
+        <ComboBox Margin="665,48,36,0" VerticalAlignment="Top" Height="23"
+                  ItemsSource="{Binding MainAnswer.AgePostfixes}" SelectedItem="{Binding Path=MainAnswer.SelectedAgePostfix}"/>
     </Grid>
 </Window>

@@ -31,7 +31,6 @@ namespace AnswerHelper
             SaveCommand = new Command(OnSaveCommandExecuted);
             NewAnswerCommand = new Command(OnNewAnswerCommandExecuted);
             MainAnswer = Answer.GetInstance();
-            MainAnswer.Rearrangements.Add(new Rearrangement("Xp12q1", 100, 300, "Duplication"));
             Mediator.Register("GetRearrangement", OnGetRearrangement);
         }
 
@@ -42,7 +41,14 @@ namespace AnswerHelper
 
         private void OnSaveCommandExecuted(object obj)
         {
-            AnswerFileFormatter.MakeWord(MainAnswer);
+            try
+            {
+                AnswerFileFormatter.MakeWord(MainAnswer);
+            }
+            catch (Exception e)
+            {
+                System.Windows.MessageBox.Show(e.ToString());
+            }
         }
 
         private void OnGetRearrangement(object obj)
