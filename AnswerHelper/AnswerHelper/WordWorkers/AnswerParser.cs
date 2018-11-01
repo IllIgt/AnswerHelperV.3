@@ -24,7 +24,7 @@ namespace AnswerHelper
                 stringLocation = stringLocation.Insert(0, $",{(location % 1000).ToString()}");
                 location /= 1000;
             }
-            return stringLocation.Insert(0, location.ToString());
+            return location != 0 ? stringLocation.Insert(0, $"{location.ToString()}"):stringLocation.Remove(0, 1);
         }
 
         public string GetSummary()
@@ -40,7 +40,7 @@ namespace AnswerHelper
 
         public string GetPatientInfo()
         {
-            return $"Ф.И.О:\t\t{_Answer.Name} {_Answer.Surname} \tВозраст:\t\t {_Answer.Age} {_Answer.SelectedAgePostfix}\t";
+            return $"Ф.И.О:\t\t{_Answer.Name} {_Answer.Surname} \tВозраст:\t\t {_Answer.Age} {_Answer.SelectedAgePostfix.ToLower()}\t";
         }
     }
 }

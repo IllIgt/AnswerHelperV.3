@@ -55,10 +55,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="AnswerFileFormatter.cs" />
+    <Compile Include="WordWorkers\AnswerFileFormatter.cs" />
     <Compile Include="AnswerObjects\Answer.cs" />
     <Compile Include="AnswerObjects\Rearrangement.cs" />
-    <Compile Include="AnswerParser.cs" />
+    <Compile Include="WordWorkers\AnswerParser.cs" />
     <Compile Include="Comand.cs" />
     <Compile Include="IClosable.cs" />
     <Compile Include="Mediator.cs" />
