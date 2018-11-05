@@ -43,7 +43,8 @@ namespace AnswerHelper
         {
             try
             {
-                AnswerFileFormatter.MakeWord(MainAnswer);
+                var wordFormatter = new AnswerFileFormatter(_MainAnswer);
+                wordFormatter.MakeWord();
             }
             catch (Exception e)
             {

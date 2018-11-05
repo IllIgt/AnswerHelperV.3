@@ -10,10 +10,37 @@ namespace AnswerHelper
     {
         private Answer _Answer;
         delegate string LocationToStringDelegate(long location);
+        public List<Rearrangement> NonBalanceRearrangements { get; private set; } = new List<Rearrangement>();
+        public List<Rearrangement> IntagenicRearrangements { get; private set; } = new List<Rearrangement>();
+        public List<Rearrangement> CNVRearrangements { get; private set; } = new List<Rearrangement>();
+        public List<Rearrangement> LOHRearrangements { get; private set; } = new List<Rearrangement>();
 
         public AnswerParser(Answer answer)
         {
             _Answer = answer;
+            SortRearengementsByType();
+        }
+
+        private void SortRearengementsByType()
+        {
+            foreach (var rearrangement in _Answer.Rearrangements)
+            {
+                switch (rearrangement.Type)
+                {
+                    case "Интрагенная":
+                        IntagenicRearrangements.Add(rearrangement);
+                        break;
+                    case "Несбалансированная":
+                        NonBalanceRearrangements.Add(rearrangement);
+                        break;
+                    case "CNV":
+                        CNVRearrangements.Add(rearrangement);
+                        break;
+                    case "LOH":
+                        LOHRearrangements.Add(rearrangement);
+                        break;
+                }
+            }
         }
 
         private string SetLocationToString(long location)

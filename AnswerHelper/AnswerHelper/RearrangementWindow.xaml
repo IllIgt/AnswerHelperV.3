@@ -10,7 +10,7 @@
     <Window.DataContext>
         <local:RearrangementWindowViewModel/>
     </Window.DataContext>
-    
+
     <Window.Resources>
         <Style x:Key="WaterMark" TargetType="{x:Type TextBox}">
             <Setter Property="Template">
@@ -39,24 +39,27 @@
             </Setter>
         </Style>
     </Window.Resources>
-    
+
     <Grid>
-        <Button Content="Сохранить" HorizontalAlignment="Left" Height="39" Margin="60,142,0,0" 
+        <Button Content="Сохранить" HorizontalAlignment="Left" Height="39" Margin="38,148,0,0" 
                 VerticalAlignment="Top" Width="200" 
                 Command ="{Binding SaveCommand}" 
                 CommandParameter="{Binding ElementName= rearrangementWindow}" RenderTransformOrigin="0.467,-0.949"/>
-        <TextBox HorizontalAlignment="Left" Height="27" Margin="147,69,0,0" TextWrapping="Wrap" 
-                 VerticalAlignment="Top" Width="80" Text ="{Binding Chromosome}"
-                 Style="{StaticResource WaterMark}" Tag="Xp1.1q1.1"/>
-        <TextBox Name ="LocationTexBox" HorizontalAlignment="Left" Height="27" Margin="290,69,0,0" TextWrapping="Wrap" 
-                 VerticalAlignment="Top" Width="294" Text="{Binding Location}" 
+        <TextBox HorizontalAlignment="Left" Height="27" Margin="120,69,0,0" TextWrapping="Wrap" 
+                 VerticalAlignment="Top" Width="85" Text ="{Binding Chromosome}"
+                 Style="{StaticResource WaterMark}" Tag="Xp1.1q1.1" RenderTransformOrigin="0.15,0.593"/>
+        <TextBox Name ="LocationTexBox" HorizontalAlignment="Left" Height="27" Margin="248,69,0,0" TextWrapping="Wrap" 
+                 VerticalAlignment="Top" Width="266" Text="{Binding Location}" 
                  Style="{StaticResource WaterMark}" Tag="00000000 00000000"/>
-        <Label Content="Локус" HorizontalAlignment="Left" Height="27" Margin="242,69,0,0" 
+        <Label Content="Локус" HorizontalAlignment="Left" Height="27" Margin="205,69,0,0" 
                VerticalAlignment="Top" Width="43" RenderTransformOrigin="0.674,0.556"/>
-        <Label Content="Координаты" HorizontalAlignment="Left" Height="27" Margin="60,69,0,0" 
+        <Label Content="Координаты" HorizontalAlignment="Left" Height="27" Margin="38,69,0,0" 
                VerticalAlignment="Top" Width="82"/>
-        <ComboBox HorizontalAlignment="Left" Margin="602,69,0,0" VerticalAlignment="Top" 
-                  Width="120" Height="27" 
+        <ComboBox HorizontalAlignment="Left" Margin="519,69,0,0" VerticalAlignment="Top" 
+                  Width="56" Height="27" 
+                  ItemsSource="{Binding CopiesNumbers}" SelectedItem="{Binding Path=SelectedCN}"/>
+        <ComboBox HorizontalAlignment="Left" Margin="580,69,0,0" VerticalAlignment="Top" Width="94"
+                  RenderTransformOrigin="0.158,-0.409" Height="27"
                   ItemsSource="{Binding Types}" SelectedItem="{Binding Path=SelectedType}"/>
     </Grid>
 

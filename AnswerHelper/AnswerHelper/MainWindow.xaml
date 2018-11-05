@@ -29,7 +29,8 @@
                 <DataGridTextColumn x:Name="ChromosomeColumn" Header = "Locus" Binding="{Binding ChromosomeLocus}"/>
                 <DataGridTextColumn x:Name="StartColumn" Header = "Start" Binding="{Binding StartLocation}"/>
                 <DataGridTextColumn x:Name="EndColumn" Header = "End" Binding="{Binding EndLocation}"/>
-                <DataGridTextColumn x:Name="TypeColumn" Header = "Type" Binding="{Binding Type}"/>
+                <DataGridTextColumn x:Name="CNColumn" Header = "CN" Binding="{Binding CopiesNumber}"/>
+                <DataGridTextColumn x:Name="TypeColumn" Header="Type" Binding="{Binding Type}"/>
             </DataGrid.Columns>
         </DataGrid>
         <Label Content="Имя" HorizontalAlignment="Left" Margin="185,43,0,0" VerticalAlignment="Top"/>

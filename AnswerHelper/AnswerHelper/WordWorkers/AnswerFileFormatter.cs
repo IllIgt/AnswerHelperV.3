@@ -10,18 +10,29 @@ namespace AnswerHelper
 {
     class AnswerFileFormatter
     {
+        private AnswerParser _AnswerParser;
 
-        public static void MakeWord(Answer answer)
+        public AnswerFileFormatter(Answer answer)
         {
-            AnswerParser answerParser = new AnswerParser(answer);
+            _AnswerParser = new AnswerParser(answer);
+        }
+
+        public void MakeWord()
+        {
             Word.Application word = new Word.Application();
             word.Visible = true;
             Word.Document doc = word.Documents.Add();
 
+            //Set Document Style
+            #region
             Word.Style style = word.ActiveDocument.Styles["Обычный"];
             style.Font.Name = "Times New Roman";
             style.Font.Size = 14;
             style.ParagraphFormat.LineSpacingRule = Word.WdLineSpacing.wdLineSpace1pt5;
+            #endregion
+
+            //Set Header Image from Resources
+            #region
             var tempPath = Path.GetTempPath() + "AnswerHeader.png";
             if (!File.Exists(tempPath))
             {
@@ -38,6 +49,7 @@ namespace AnswerHelper
             }
             doc.Shapes.AddPicture(tempPath,
                 SaveWithDocument: true, Top: -56, Left: -85, Width: doc.PageSetup.PageWidth, Height: 98);
+            #endregion
 
             //Set paragraphs
             #region
@@ -72,7 +84,7 @@ namespace AnswerHelper
             titleParagraph.Range.ParagraphFormat.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
 
             patientParagraph.Range.Font.Underline = Word.WdUnderline.wdUnderlineSingle;
-            patientParagraph.Range.Text = answerParser.GetPatientInfo();
+            patientParagraph.Range.Text = _AnswerParser.GetPatientInfo();
             patientParagraph.Range.ParagraphFormat.Alignment = Word.WdParagraphAlignment.wdAlignParagraphJustify;
 
             summaryFirstParagraph.Range.Font.Underline = Word.WdUnderline.wdUnderlineSingle;
@@ -87,8 +99,25 @@ namespace AnswerHelper
             footnoteRange.End -= 2;
             doc.Footnotes.Add(footnoteRange, Text:" ISCN (2013):An International System for Human Cytogenetic Nomenclature, L.G. Shaffer, J. McGowan-Jordan, M. Schmid (eds); S. Karger, Basel 2013.");
 
-            arraysSummaryParagraph.Range.Text = answerParser.GetSummary();
+            arraysSummaryParagraph.Range.Text = _AnswerParser.GetSummary();
+            doc.Words.Last.InsertBreak(Word.WdBreakType.wdPageBreak);
             #endregion
+
+            //Set and Format NonStatic Paragraphs
+            if (_AnswerParser.NonBalanceRearrangements.Count != 0)
+            {
+                var nonBalancedParagraph = doc.Paragraphs.Add();
+                nonBalancedParagraph.Range.InsertParagraphAfter();
+                nonBalancedParagraph.Range.Font.Bold = 1;
+                nonBalancedParagraph.Range.Font.Underline = Word.WdUnderline.wdUnderlineSingle;
+                nonBalancedParagraph.Range.Text = "Несбалансированные хромосомные и геномные перестройки(более 1 млн пн):";
+                foreach (var rearrangement in _AnswerParser.NonBalanceRearrangements)
+                {
+                    doc.Paragraphs.Add();
+                    doc.Paragraphs.Last.Range.Text = rearrangement.ToString();
+                    doc.Paragraphs.Last.Range.InsertParagraphAfter();
+                }
+            }
         }
     }
 }
