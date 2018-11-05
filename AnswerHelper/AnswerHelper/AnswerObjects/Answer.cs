@@ -13,7 +13,10 @@ namespace AnswerHelper
 {
     class Answer
     {
-        private ObservableCollection<Rearrangement> _Rearrangements;
+        private ObservableCollection<NonBalancedRearrangement> _NonBalancedRearrangements;
+        private ObservableCollection<CNVRearrangement> _CNVRearrangements;
+        private ObservableCollection<IntragenicRearrangement> _IntragenicRearrangements;
+        private ObservableCollection<LOHRearrangement> _LOHRearrangements;
         private string _Date;
         private static Answer Instance;
 
@@ -23,9 +26,26 @@ namespace AnswerHelper
         public string Surname { get; set; }
         public string Age { get; set; }
 
-        public ObservableCollection<Rearrangement> Rearrangements
+        public ObservableCollection<NonBalancedRearrangement> NonBalancedRearrangements
         {
-            get { return _Rearrangements ?? (_Rearrangements = new ObservableCollection<Rearrangement>()); }
+            get { return _NonBalancedRearrangements ??
+                    (_NonBalancedRearrangements = new ObservableCollection<NonBalancedRearrangement>()); }
+        }
+
+        public ObservableCollection<CNVRearrangement> CNVRearrangements
+        {
+            get {return _CNVRearrangements ?? (_CNVRearrangements = new ObservableCollection<CNVRearrangement>());}
+        }
+
+        public ObservableCollection<IntragenicRearrangement> IntragenicRearrangements
+        {
+            get { return _IntragenicRearrangements ?? 
+                    (_IntragenicRearrangements = new ObservableCollection<IntragenicRearrangement>()); }
+        }
+
+        public ObservableCollection<LOHRearrangement> LOHRearrangements
+        {
+            get { return _LOHRearrangements ?? (_LOHRearrangements = new ObservableCollection<LOHRearrangement>()); }
         }
 
         public Answer()

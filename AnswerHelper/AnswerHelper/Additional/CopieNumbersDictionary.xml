@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<copies_numbers>
+  <symbol name="×1">
+    <value>Делеция</value>
+  </symbol>
+    <symbol name="×3">
+    <value>Дупликация</value>
+  </symbol>
+    <symbol name="×4">
+    <value>Трипликация</value>
+  </symbol>
+  <symbol name="×1~2">
+    <value>Мозаичная делеция</value>
+  </symbol>
+  <symbol name="×2~3">
+    <value>Мозаичная дупликация</value>
+  </symbol>
+    <symbol name="×2hmz">
+    <value>Сегментная потеря гетерозиготности</value>
+  </symbol>
+</copies_numbers>

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AnswerHelper
 {
-    class Rearrangement
+    abstract class Rearrangement
     {
         private long _Size;
         public string  CopiesNumber { get; set; }
@@ -24,12 +24,6 @@ namespace AnswerHelper
             Type = type;
             CopiesNumber = copies_number;
             ChromosomeLocus = chromosome_locus;
-        }
-
-        public override string ToString()
-        {
-            return $"\b{CopiesNumber}\b0 {ChromosomeLocus} (геномная локализация: {StartLocation}-{EndLocation};" +
-                    $" размер: {_Size} пн): {CopiesNumber}, затронувшая";
         }
 
     }

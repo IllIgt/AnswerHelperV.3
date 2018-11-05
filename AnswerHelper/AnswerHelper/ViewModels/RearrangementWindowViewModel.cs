@@ -10,33 +10,29 @@ using System.Windows.Input;
 
 namespace AnswerHelper
 {
-    class RearrangementWindowViewModel : ViewModel
+    abstract class RearrangementWindowViewModel : ViewModel
     {
         public Command SaveCommand { get; private set; }
         public string Chromosome { get; set; }
         public string Location { get; set; }
-        public List<string> CopiesNumbers { get; } = new List<string> { "×1", "×2", "×3", "×1~2", "×2~3", "×0~1", "×4", "×2hmz" };
+        public virtual List<string> CopiesNumbers { get; } = new List<string> { "×1", "×2", "×3", "×1~2", "×2~3", "×0~1", "×4", "×2hmz" };
         public string SelectedCN { get; set; } = "×2";
-        public List<string> Types { get; } = new List<string> { "Интрагенная","Несбалансированная", "CNV", "LOH", };
-        public string SelectedType { get; set; } = "CNV";
+        
         public RearrangementWindowViewModel()
         {
             SaveCommand = new Command(OnSaveCommandExecuted);
         }
 
-        private void OnSaveCommandExecuted(object window)
+        protected virtual void OnSaveCommandExecuted(object obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected string[] LocationParse()
         {
             Regex regex = new Regex(@"\d+\s+\d+");
             Match match = regex.Match(Location);
-            var locations= Regex.Split(match.Value, @"\s+");
-            Mediator.NotifyColleggues("GetRearrangement",
-                new Rearrangement(
-                    Chromosome, 
-                    long.Parse(locations[0]), 
-                    long.Parse(locations[1]), 
-                    SelectedCN,
-                    SelectedType));
-            ((IClosable)window)?.Close();
+            return Regex.Split(match.Value, @"\s+");
         }
     }
 }

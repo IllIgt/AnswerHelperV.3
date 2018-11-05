@@ -9,38 +9,16 @@ namespace AnswerHelper
     class AnswerParser
     {
         private Answer _Answer;
+        private List<Rearrangement> _SummaryRearrangements;
         delegate string LocationToStringDelegate(long location);
-        public List<Rearrangement> NonBalanceRearrangements { get; private set; } = new List<Rearrangement>();
-        public List<Rearrangement> IntagenicRearrangements { get; private set; } = new List<Rearrangement>();
-        public List<Rearrangement> CNVRearrangements { get; private set; } = new List<Rearrangement>();
-        public List<Rearrangement> LOHRearrangements { get; private set; } = new List<Rearrangement>();
 
         public AnswerParser(Answer answer)
         {
             _Answer = answer;
-            SortRearengementsByType();
-        }
-
-        private void SortRearengementsByType()
-        {
-            foreach (var rearrangement in _Answer.Rearrangements)
-            {
-                switch (rearrangement.Type)
-                {
-                    case "Интрагенная":
-                        IntagenicRearrangements.Add(rearrangement);
-                        break;
-                    case "Несбалансированная":
-                        NonBalanceRearrangements.Add(rearrangement);
-                        break;
-                    case "CNV":
-                        CNVRearrangements.Add(rearrangement);
-                        break;
-                    case "LOH":
-                        LOHRearrangements.Add(rearrangement);
-                        break;
-                }
-            }
+            _SummaryRearrangements = new List<Rearrangement>();
+            _SummaryRearrangements.AddRange(_Answer.IntragenicRearrangements);
+            _SummaryRearrangements.AddRange(_Answer.NonBalancedRearrangements);
+            _SummaryRearrangements.AddRange(_Answer.CNVRearrangements);
         }
 
         private string SetLocationToString(long location)
@@ -58,10 +36,10 @@ namespace AnswerHelper
         {
             LocationToStringDelegate locationToString = SetLocationToString;
             string rearrangements = "arr ";
-            foreach (var rearrangement in _Answer.Rearrangements)
+            foreach (var rearrangement in _SummaryRearrangements)
                 rearrangements += $"{rearrangement.ChromosomeLocus}" +
                     $"({locationToString(rearrangement.StartLocation)}-{locationToString(rearrangement.EndLocation)})" +
-                    $"{rearrangement.Type}{(rearrangement != _Answer.Rearrangements.Last<Rearrangement>() ? "," : String.Empty)}";
+                    $"{rearrangement.CopiesNumber}{(rearrangement != _SummaryRearrangements.Last<Rearrangement>() ? "," : String.Empty)}";
             return rearrangements;
         }
 
