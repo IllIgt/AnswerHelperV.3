@@ -15,8 +15,8 @@ namespace AnswerHelper
         public Command SaveCommand { get; private set; }
         public string Chromosome { get; set; }
         public string Location { get; set; }
-        public virtual List<string> CopiesNumbers { get; } = new List<string> { "×1", "×2", "×3", "×1~2", "×2~3", "×0~1", "×4", "×2hmz" };
-        public string SelectedCN { get; set; } = "×2";
+        public virtual List<string> CopiesNumbers { get; }
+        public string SelectedCN { get; set; }
         
         public RearrangementWindowViewModel()
         {

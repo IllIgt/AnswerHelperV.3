@@ -9,17 +9,7 @@
     <Window.DataContext>
         <local:MainWindowViewModel/>
     </Window.DataContext>
-
-    <Window.Resources>
-        <ItemsPanelTemplate x:Key="MenuItemPanelTemplate">
-            <StackPanel Margin="-20,0,0,0"/>
-        </ItemsPanelTemplate>
-        
-        <Style TargetType="{x:Type MenuItem}">
-            <Setter Property="ItemsPanel" Value="{StaticResource MenuItemPanelTemplate}"/>
-        </Style>
-    </Window.Resources>
-
+    
     <Grid>
         <Menu Height="20" VerticalAlignment="Top">
             <MenuItem Header="Файл">

@@ -9,13 +9,14 @@ namespace AnswerHelper
     class AnswerParser
     {
         private Answer _Answer;
+        private AnswerFileFormatter _AnswerFileFormatter;
         private List<Rearrangement> _SummaryRearrangements;
         delegate string LocationToStringDelegate(long location);
 
         public AnswerParser(Answer answer)
         {
             _Answer = answer;
-            _SummaryRearrangements = new List<Rearrangement>();
+            _SummaryRearrangements = new List<Rearrangement>(); 
             _SummaryRearrangements.AddRange(_Answer.IntragenicRearrangements);
             _SummaryRearrangements.AddRange(_Answer.NonBalancedRearrangements);
             _SummaryRearrangements.AddRange(_Answer.CNVRearrangements);
@@ -47,5 +48,11 @@ namespace AnswerHelper
         {
             return $"Ф.И.О:\t\t{_Answer.Name} {_Answer.Surname} \tВозраст:\t\t {_Answer.Age} {_Answer.SelectedAgePostfix.ToLower()}\t";
         }
+
+        public void CreateAndFillWdDocument()
+        {
+            //_AnswerFileFormatter = new AnswerFileFormatter();
+        }
+
     }
 }

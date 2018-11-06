@@ -85,6 +85,8 @@
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\RearrangementWindowViewModel.cs" />
     <Compile Include="ViewModels\ViewModel.cs" />
+    <Compile Include="WordWorkers\NonBalancedParagraph.cs" />
+    <Compile Include="WordWorkers\RearrangementParagraphsFactory.cs" />
     <Page Include="Views\LOHWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

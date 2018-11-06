@@ -10,11 +10,14 @@ namespace AnswerHelper
 {
     class AnswerFileFormatter
     {
-        private AnswerParser _AnswerParser;
+        private List<NonBalancedRearrangement> _NonBalancedRearrangements;
+        private List<IntragenicRearrangement> _IntragenicRearrangements;
+        private List<LOHRearrangement> _LOHRearrangements;
+        private List<CNVRearrangement> _CNVRearrangements;
 
         public AnswerFileFormatter(Answer answer)
         {
-            _AnswerParser = new AnswerParser(answer);
+
         }
 
         public void MakeWord()
@@ -89,7 +92,7 @@ namespace AnswerHelper
             titleParagraph.Range.ParagraphFormat.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
 
             patientParagraph.Range.Font.Underline = Word.WdUnderline.wdUnderlineSingle;
-            patientParagraph.Range.Text = _AnswerParser.GetPatientInfo();
+          //  patientParagraph.Range.Text = _AnswerParser.GetPatientInfo();
             patientParagraph.Range.ParagraphFormat.Alignment = Word.WdParagraphAlignment.wdAlignParagraphJustify;
 
             summaryFirstParagraph.Range.Font.Underline = Word.WdUnderline.wdUnderlineSingle;
@@ -104,7 +107,7 @@ namespace AnswerHelper
             footnoteRange.End -= 2;
             doc.Footnotes.Add(footnoteRange, Text:" ISCN (2013):An International System for Human Cytogenetic Nomenclature, L.G. Shaffer, J. McGowan-Jordan, M. Schmid (eds); S. Karger, Basel 2013.");
 
-            arraysSummaryParagraph.Range.Text = _AnswerParser.GetSummary();
+           // arraysSummaryParagraph.Range.Text = _AnswerParser.GetSummary();
             doc.Words.Last.InsertBreak(Word.WdBreakType.wdPageBreak);
 
             commentsParagraph.Range.Font.Bold = 1;
@@ -133,5 +136,6 @@ namespace AnswerHelper
             //}
             #endregion
         }
-    }
+    } 
+
 }
