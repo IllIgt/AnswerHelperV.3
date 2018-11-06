@@ -9,17 +9,50 @@ namespace AnswerHelper
     class AnswerParser
     {
         private Answer _Answer;
+<<<<<<< HEAD
         private AnswerFileFormatter _AnswerFileFormatter;
         private List<Rearrangement> _SummaryRearrangements;
+=======
+>>>>>>> parent of f4e52e8... Added Models, Views and ViewModels for all types og Rearrangements, Added stack panel with DataGrids to MainWindow
         delegate string LocationToStringDelegate(long location);
+        public List<Rearrangement> NonBalanceRearrangements { get; private set; } = new List<Rearrangement>();
+        public List<Rearrangement> IntagenicRearrangements { get; private set; } = new List<Rearrangement>();
+        public List<Rearrangement> CNVRearrangements { get; private set; } = new List<Rearrangement>();
+        public List<Rearrangement> LOHRearrangements { get; private set; } = new List<Rearrangement>();
 
         public AnswerParser(Answer answer)
         {
             _Answer = answer;
+<<<<<<< HEAD
             _SummaryRearrangements = new List<Rearrangement>(); 
             _SummaryRearrangements.AddRange(_Answer.IntragenicRearrangements);
             _SummaryRearrangements.AddRange(_Answer.NonBalancedRearrangements);
             _SummaryRearrangements.AddRange(_Answer.CNVRearrangements);
+=======
+            SortRearengementsByType();
+        }
+
+        private void SortRearengementsByType()
+        {
+            foreach (var rearrangement in _Answer.Rearrangements)
+            {
+                switch (rearrangement.Type)
+                {
+                    case "Интрагенная":
+                        IntagenicRearrangements.Add(rearrangement);
+                        break;
+                    case "Несбалансированная":
+                        NonBalanceRearrangements.Add(rearrangement);
+                        break;
+                    case "CNV":
+                        CNVRearrangements.Add(rearrangement);
+                        break;
+                    case "LOH":
+                        LOHRearrangements.Add(rearrangement);
+                        break;
+                }
+            }
+>>>>>>> parent of f4e52e8... Added Models, Views and ViewModels for all types og Rearrangements, Added stack panel with DataGrids to MainWindow
         }
 
         private string SetLocationToString(long location)
@@ -37,10 +70,10 @@ namespace AnswerHelper
         {
             LocationToStringDelegate locationToString = SetLocationToString;
             string rearrangements = "arr ";
-            foreach (var rearrangement in _SummaryRearrangements)
+            foreach (var rearrangement in _Answer.Rearrangements)
                 rearrangements += $"{rearrangement.ChromosomeLocus}" +
                     $"({locationToString(rearrangement.StartLocation)}-{locationToString(rearrangement.EndLocation)})" +
-                    $"{rearrangement.CopiesNumber}{(rearrangement != _SummaryRearrangements.Last<Rearrangement>() ? "," : String.Empty)}";
+                    $"{rearrangement.Type}{(rearrangement != _Answer.Rearrangements.Last<Rearrangement>() ? "," : String.Empty)}";
             return rearrangements;
         }
 

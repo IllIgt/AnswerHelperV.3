@@ -55,36 +55,20 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="AnswerObjects\Rearrangements\CNVRearrangement.cs" />
-    <Compile Include="AnswerObjects\Rearrangements\IntragenicRearrangement.cs" />
-    <Compile Include="AnswerObjects\Rearrangements\LOHRearrangement.cs" />
-    <Compile Include="AnswerObjects\Rearrangements\NonBalancedRearrangement.cs" />
-    <Compile Include="ViewModels\CNVWindowViewModel.cs" />
-    <Compile Include="ViewModels\LOHWindowViewModel.cs" />
-    <Compile Include="ViewModels\NonBalancedWindowViewModel.cs" />
-    <Compile Include="Views\LOHWindow.xaml.cs">
-      <DependentUpon>LOHWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\NonBalancedWindow.xaml.cs">
-      <DependentUpon>NonBalancedWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\CNVWindow.xaml.cs">
-      <DependentUpon>CNVWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\IntragenicWindow.xaml.cs">
-      <DependentUpon>IntragenicWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="ViewModels\IntragenicWindowViewModel.cs" />
     <Compile Include="WordWorkers\AnswerFileFormatter.cs" />
     <Compile Include="AnswerObjects\Answer.cs" />
-    <Compile Include="AnswerObjects\Rearrangements\Rearrangement.cs" />
+    <Compile Include="AnswerObjects\Rearrangement.cs" />
     <Compile Include="WordWorkers\AnswerParser.cs" />
     <Compile Include="Comand.cs" />
     <Compile Include="IClosable.cs" />
     <Compile Include="Mediator.cs" />
+    <Compile Include="RearrangementWindow.xaml.cs">
+      <DependentUpon>RearrangementWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\RearrangementWindowViewModel.cs" />
     <Compile Include="ViewModels\ViewModel.cs" />
+<<<<<<< HEAD
     <Compile Include="WordWorkers\NonBalancedParagraph.cs" />
     <Compile Include="WordWorkers\RearrangementParagraphsFactory.cs" />
     <Page Include="Views\LOHWindow.xaml">
@@ -104,6 +88,9 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MainWindow.xaml">
+=======
+    <Page Include="MainWindow.xaml">
+>>>>>>> parent of f4e52e8... Added Models, Views and ViewModels for all types og Rearrangements, Added stack panel with DataGrids to MainWindow
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -111,10 +98,14 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Views\MainWindow.xaml.cs">
+    <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="RearrangementWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -173,7 +164,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Additional\AnswerHeader.png" />
-    <Resource Include="Additional\CopieNumbersDictionary.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

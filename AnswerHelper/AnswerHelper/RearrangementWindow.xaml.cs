@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace AnswerHelper
 {
     /// <summary>
-    /// Логика взаимодействия для CNVWindow.xaml
+    /// Логика взаимодействия для RearrangementWindow.xaml
     /// </summary>
-    public partial class CNVWindow : Window, IClosable
+    public partial class RearrangementWindow : Window, IClosable
     {
-        public CNVWindow()
+        public RearrangementWindow()
         {
             InitializeComponent();
         }
