@@ -15,10 +15,7 @@ namespace AnswerHelper
 
         private Answer _MainAnswer;
 
-        public ICommand AddIntragenicCommand { get; }
-        public ICommand AddCNVCommand { get; }
-        public ICommand AddLOHCommand { get; }
-        public ICommand AddNonBalancedCommand { get; }
+        public ICommand AddCommand { get; }
         public ICommand SaveCommand { get; }
         public ICommand NewAnswerCommand { get; }
         public Answer MainAnswer
@@ -30,61 +27,11 @@ namespace AnswerHelper
 
         public MainWindowViewModel()
         {
-            AddIntragenicCommand = new Command(OnAddIntagenicCommandExecuted);
-            AddCNVCommand = new Command(OnAddCNVCommandExecuted);
-            AddLOHCommand = new Command(OnAddLOHCommandExecuted);
-            AddNonBalancedCommand = new Command(OnAddNonBalancedCommandExecuted);
+            AddCommand = new Command(OnAddCommandExecuted);
             SaveCommand = new Command(OnSaveCommandExecuted);
             NewAnswerCommand = new Command(OnNewAnswerCommandExecuted);
             MainAnswer = Answer.GetInstance();
-            Mediator.Register("GetCNV", OnGetCNV);
-            Mediator.Register("GetLOH", OnGetLOH);
-            Mediator.Register("GetNonBalanced", OnGetNonBalanced);
-            Mediator.Register("GetIntragenic", OnGetIntagenic);
-        }
-
-        private void OnAddNonBalancedCommandExecuted(object obj)
-        {
-            NonBalancedWindow nonBalancedWindow = new NonBalancedWindow();
-            nonBalancedWindow.ShowDialog();
-        }
-
-        private void OnAddLOHCommandExecuted(object obj)
-        {
-            LOHWindow lohWindow = new LOHWindow();
-            lohWindow.ShowDialog();
-        }
-
-        private void OnAddCNVCommandExecuted(object obj)
-        {
-            CNVWindow cnvWindow = new CNVWindow();
-            cnvWindow.ShowDialog();
-        }
-
-        private void OnAddIntagenicCommandExecuted(object obj)
-        {
-            IntragenicWindow intragenicWindow = new IntragenicWindow();
-            intragenicWindow.ShowDialog();
-        }
-
-        private void OnGetIntagenic(object obj)
-        {
-            MainAnswer.IntragenicRearrangements.Add((IntragenicRearrangement)obj);
-        }
-
-        private void OnGetNonBalanced(object obj)
-        {
-            MainAnswer.NonBalancedRearrangements.Add((NonBalancedRearrangement)obj);
-        }
-
-        private void OnGetLOH(object obj)
-        {
-            MainAnswer.LOHRearrangements.Add((LOHRearrangement)obj);
-        }
-
-        private void OnGetCNV(object obj)
-        {
-            MainAnswer.CNVRearrangements.Add((CNVRearrangement)obj);
+            Mediator.Register("GetRearrangement", OnGetRearrangement);
         }
 
         private void OnNewAnswerCommandExecuted(object obj)
@@ -103,6 +50,17 @@ namespace AnswerHelper
             {
                 System.Windows.MessageBox.Show(e.ToString());
             }
+        }
+
+        private void OnGetRearrangement(object obj)
+        {
+            MainAnswer.Rearrangements.Add((Rearrangement)obj);
+        }
+
+        private void OnAddCommandExecuted(object obj)
+        {
+            RearrangementWindow rearrangementWindow = new RearrangementWindow();
+            rearrangementWindow.ShowDialog();
         }
     }
 }

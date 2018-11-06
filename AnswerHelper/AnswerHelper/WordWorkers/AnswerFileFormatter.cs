@@ -69,11 +69,6 @@ namespace AnswerHelper
             summarySecondParagraph.Range.InsertParagraphAfter();
             var arraysSummaryParagraph = doc.Paragraphs.Add();
             arraysSummaryParagraph.Range.InsertParagraphAfter();
-            var commentsParagraph = doc.Paragraphs.Add();
-            commentsParagraph.Range.InsertParagraphAfter();
-            var nonBalancedParagraphTitle = doc.Paragraphs.Add();
-            var nonBalancedParagraph = doc.Paragraphs.Add();
-            nonBalancedParagraph.Range.InsertParagraphAfter();
             #endregion
 
             //Format paragraphs
@@ -106,32 +101,23 @@ namespace AnswerHelper
 
             arraysSummaryParagraph.Range.Text = _AnswerParser.GetSummary();
             doc.Words.Last.InsertBreak(Word.WdBreakType.wdPageBreak);
-
-            commentsParagraph.Range.Font.Bold = 1;
-            commentsParagraph.Range.Font.Underline = Word.WdUnderline.wdUnderlineSingle;
-            commentsParagraph.Range.Text = "Несбалансированные хромосомные и геномные перестройки (более 1 млн пн):";
-
-            nonBalancedParagraphTitle.Range.Font.Bold = 1;
-            nonBalancedParagraphTitle.Range.Font.Underline = Word.WdUnderline.wdUnderlineSingle;
-            nonBalancedParagraphTitle.Range.Text = "Несбалансированные хромосомные и геномные перестройки (более 1 млн пн):";
             #endregion
 
             //Set and Format NonStatic Paragraphs
-            #region
-            //if (_AnswerParser.NonBalanceRearrangements.Count != 0)
-            //{
-            //    foreach (var rearrangement in _AnswerParser.NonBalanceRearrangements)
-            //    {
-            //        nonBalancedParagraph.Range.Text = rearrangement.ToString();
-            //        nonBalancedParagraph.Range.InsertParagraphAfter();
-            //    }
-            //}
-            //else
-            //{
-            //    nonBalancedParagraph.Range.Text = "Не Выявленно.";
-            //    nonBalancedParagraph.Range.InsertParagraphAfter();
-            //}
-            #endregion
+            if (_AnswerParser.NonBalanceRearrangements.Count != 0)
+            {
+                var nonBalancedParagraph = doc.Paragraphs.Add();
+                nonBalancedParagraph.Range.InsertParagraphAfter();
+                nonBalancedParagraph.Range.Font.Bold = 1;
+                nonBalancedParagraph.Range.Font.Underline = Word.WdUnderline.wdUnderlineSingle;
+                nonBalancedParagraph.Range.Text = "Несбалансированные хромосомные и геномные перестройки(более 1 млн пн):";
+                foreach (var rearrangement in _AnswerParser.NonBalanceRearrangements)
+                {
+                    doc.Paragraphs.Add();
+                    doc.Paragraphs.Last.Range.Text = rearrangement.ToString();
+                    doc.Paragraphs.Last.Range.InsertParagraphAfter();
+                }
+            }
         }
     }
 }
