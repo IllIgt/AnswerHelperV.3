@@ -10,8 +10,11 @@ namespace AnswerHelper
     {
         private Answer _Answer;
 <<<<<<< HEAD
+<<<<<<< HEAD
         private AnswerFileFormatter _AnswerFileFormatter;
         private List<Rearrangement> _SummaryRearrangements;
+=======
+>>>>>>> parent of f4e52e8... Added Models, Views and ViewModels for all types og Rearrangements, Added stack panel with DataGrids to MainWindow
 =======
 >>>>>>> parent of f4e52e8... Added Models, Views and ViewModels for all types og Rearrangements, Added stack panel with DataGrids to MainWindow
         delegate string LocationToStringDelegate(long location);
@@ -24,11 +27,14 @@ namespace AnswerHelper
         {
             _Answer = answer;
 <<<<<<< HEAD
+<<<<<<< HEAD
             _SummaryRearrangements = new List<Rearrangement>(); 
             _SummaryRearrangements.AddRange(_Answer.IntragenicRearrangements);
             _SummaryRearrangements.AddRange(_Answer.NonBalancedRearrangements);
             _SummaryRearrangements.AddRange(_Answer.CNVRearrangements);
 =======
+=======
+>>>>>>> parent of f4e52e8... Added Models, Views and ViewModels for all types og Rearrangements, Added stack panel with DataGrids to MainWindow
             SortRearengementsByType();
         }
 
@@ -52,6 +58,9 @@ namespace AnswerHelper
                         break;
                 }
             }
+<<<<<<< HEAD
+>>>>>>> parent of f4e52e8... Added Models, Views and ViewModels for all types og Rearrangements, Added stack panel with DataGrids to MainWindow
+=======
 >>>>>>> parent of f4e52e8... Added Models, Views and ViewModels for all types og Rearrangements, Added stack panel with DataGrids to MainWindow
         }
 

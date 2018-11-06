@@ -16,14 +16,20 @@ namespace AnswerHelper
         public string Chromosome { get; set; }
         public string Location { get; set; }
 <<<<<<< HEAD
+<<<<<<< HEAD
         public virtual List<string> CopiesNumbers { get; }
         public string SelectedCN { get; set; }
         
 =======
+=======
+>>>>>>> parent of f4e52e8... Added Models, Views and ViewModels for all types og Rearrangements, Added stack panel with DataGrids to MainWindow
         public List<string> CopiesNumbers { get; } = new List<string> { "×1", "×2", "×3", "×1~2", "×2~3", "×0~1", "×4", "×2hmz" };
         public string SelectedCN { get; set; } = "×2";
         public List<string> Types { get; } = new List<string> { "Интрагенная","Несбалансированная", "CNV", "LOH", };
         public string SelectedType { get; set; } = "CNV";
+<<<<<<< HEAD
+>>>>>>> parent of f4e52e8... Added Models, Views and ViewModels for all types og Rearrangements, Added stack panel with DataGrids to MainWindow
+=======
 >>>>>>> parent of f4e52e8... Added Models, Views and ViewModels for all types og Rearrangements, Added stack panel with DataGrids to MainWindow
         public RearrangementWindowViewModel()
         {

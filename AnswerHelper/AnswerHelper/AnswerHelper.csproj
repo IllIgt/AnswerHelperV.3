@@ -69,6 +69,7 @@
     <Compile Include="ViewModels\RearrangementWindowViewModel.cs" />
     <Compile Include="ViewModels\ViewModel.cs" />
 <<<<<<< HEAD
+<<<<<<< HEAD
     <Compile Include="WordWorkers\NonBalancedParagraph.cs" />
     <Compile Include="WordWorkers\RearrangementParagraphsFactory.cs" />
     <Page Include="Views\LOHWindow.xaml">
@@ -88,6 +89,9 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MainWindow.xaml">
+=======
+    <Page Include="MainWindow.xaml">
+>>>>>>> parent of f4e52e8... Added Models, Views and ViewModels for all types og Rearrangements, Added stack panel with DataGrids to MainWindow
 =======
     <Page Include="MainWindow.xaml">
 >>>>>>> parent of f4e52e8... Added Models, Views and ViewModels for all types og Rearrangements, Added stack panel with DataGrids to MainWindow
